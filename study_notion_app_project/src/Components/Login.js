@@ -1,13 +1,24 @@
 import React from "react";
 import loginImg from "../assets/login.png";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
-const Home = () => {
+const Login = ({ setLogin, setSignup, signup, login }) => {
+  let navi = useNavigate();
+  let subform = (ev) => {
+    setLogin("logout");
+    setSignup("Dashboard");
+    navi("/dashboard");
+    toast("Logged in ");
+    ev.preventDefault();
+  };
+
   return (
     <>
       <div className="bg-black text-white w-full h-[100vh] text-center flex">
         <div className="first_half w-1/2">
           <div className="w-1/2 m-auto text-start flex flex-col">
-            <h2 className="font-bold m-6">Welcome Back</h2>
+            <h2 className="font-bold m-6 text-5xl">Welcome Back</h2>
             <p className="italic m-6">
               Build skills for today tomorrow and beyond
             </p>
@@ -15,15 +26,16 @@ const Home = () => {
               {" "}
               Education to future proof your career
             </p>
-            <form action="" className="flex flex-col">
+            <form action="" onSubmit={subform} className="flex flex-col">
               <div className="flex flex-col m-6 ">
                 <label htmlFor="">Email address</label>
                 <input
-                  type="text"
+                  type="email"
                   name=""
-                  id=""
+                  id="mail"
                   className="text-black bg-gray-800 p-2"
                   placeholder="enter email address"
+                  autoComplete="username"
                 />
               </div>
               <div className="flex flex-col m-6">
@@ -31,10 +43,11 @@ const Home = () => {
                 <input
                   type="password"
                   name=""
-                  id=""
+                  id="pass"
                   className="text-black bg-gray-800 p-2"
                   placeholder="enter password"
                   required
+                  autoComplete="current-password"
                 />
               </div>
               <div className="flex flex-col text-end">Forget Password</div>
@@ -55,4 +68,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;
