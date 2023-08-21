@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import loginImg from "../assets/login.png";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 
-const Login = ({ setLogin, setSignup, signup, login }) => {
+const Login = ({ setLogin, setSignup, dispmain }) => {
+  const [formdata, setFormdata] = useState({
+    loginmail: "",
+    loginpassword: "",
+  });
+
+  let setting = (evee) => {
+    setFormdata((prevformdata) => {
+      return {
+        ...prevformdata,
+        [evee.target.name]: evee.target.value,
+      };
+    });
+  };
+
   let navi = useNavigate();
   let subform = (ev) => {
-    setLogin("logout");
-    setSignup("Dashboard");
+    // setLogin("logout");
+    // setSignup("Dashboard");
     navi("/dashboard");
-    toast("Logged in ");
     ev.preventDefault();
   };
 
@@ -28,31 +40,40 @@ const Login = ({ setLogin, setSignup, signup, login }) => {
             </p>
             <form action="" onSubmit={subform} className="flex flex-col">
               <div className="flex flex-col m-6 ">
-                <label htmlFor="">Email address</label>
+                <label htmlFor="mail">Email address</label>
                 <input
                   type="email"
-                  name=""
+                  name="loginmail"
+                  onChange={setting}
+                  value={formdata.loginmail}
                   id="mail"
                   className="text-black bg-gray-800 p-2"
                   placeholder="enter email address"
+                  required
                   autoComplete="username"
                 />
               </div>
               <div className="flex flex-col m-6">
-                <label htmlFor="">Password</label>
+                <label htmlFor="pass">Password</label>
                 <input
                   type="password"
-                  name=""
+                  name="loginpassword"
+                  onChange={setting}
+                  value={formdata.loginpassword}
                   id="pass"
                   className="text-black bg-gray-800 p-2"
                   placeholder="enter password"
-                  required
                   autoComplete="current-password"
+                  required
                 />
               </div>
               <div className="flex flex-col text-end">Forget Password</div>
               <div className="bg-yellow-300 text-black text-center font-bold w-[90%] m-auto">
-                <button type="submit" className="rounded-lg p-2">
+                <button
+                  type="submit"
+                  className="rounded-lg p-2"
+                  onClick={dispmain()}
+                >
                   Sign In
                 </button>
               </div>

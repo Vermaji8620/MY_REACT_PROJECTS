@@ -7,21 +7,49 @@ import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import DashBoard from "./Components/DashBoard";
-import { useState } from "react";
+// import { useState } from "react";
 import LogoImg from "./assets/Logo.svg";
+import { toast } from "react-hot-toast";
 
 function App() {
-  const [login, setLogin] = useState("Login");
-  const [signup, setSignup] = useState("Signup");
+  //   const [login, setLogin] = useState("Login");
+  //   const [signup, setSignup] = useState("Signup");
 
   let navigaetee = useNavigate();
 
-  let loginfunc = () => {
+  let dispmain = () => {
+    navigaetee("/dashboard");
+    toast("Logged in");
+    document.getElementsByClassName("fbut")[0].style.display = "none";
+    document.getElementsByClassName("sbut")[0].style.display = "none";
+    document.getElementsByClassName("tbut")[0].style.display = "block";
+    document.getElementsByClassName("fobut")[0].style.display = "block";
+  };
+
+  let dispsec = () => {
+    toast("Logged out");
+    document.getElementsByClassName("fbut")[0].style.display = "block";
+    document.getElementsByClassName("sbut")[0].style.display = "block";
+    document.getElementsByClassName("tbut")[0].style.display = "none";
+    document.getElementsByClassName("fobut")[0].style.display = "none";
+  };
+
+  let loginfunc = (eve) => {
     navigaetee("/login");
   };
 
-  let signupfunc = () => {
+  let signupfunc = (eve) => {
     navigaetee("/signup");
+  };
+
+  let logoutfunc = () => {
+    navigaetee("/");
+    dispsec();
+  };
+
+  let dashfunc = () => {
+    navigaetee("/dashboard");
+    dispsec();
   };
 
   return (
@@ -45,12 +73,26 @@ function App() {
             </li>
           </ul>
         </div>
-        <div className="flex font-bold">
-          <button className="mr-4 p-4" onClick={loginfunc}>
-            {login}
+        <div className="flex  font-bold">
+          <button className="mr-4 p-4 fbut" onClick={loginfunc}>
+            Login
           </button>
-          <button className="mr-4 p-4" onClick={signupfunc}>
-            {signup}
+          <button className="mr-4  p-4 sbut" onClick={signupfunc}>
+            SignUp
+          </button>
+          <button
+            className=" mr-4  p-4  tbut"
+            onClick={logoutfunc}
+            style={{ display: "none " }}
+          >
+            Logout
+          </button>
+          <button
+            className="mr-4  p-4 fobut"
+            style={{ display: "none " }}
+            onClick={dashfunc}
+          >
+            Dashboard
           </button>
         </div>
       </nav>
@@ -64,10 +106,9 @@ function App() {
           path="/login"
           element={
             <Login
-              setLogin={setLogin}
-              login={login}
-              signup={signup}
-              setSignup={setSignup}
+              // setLogin={setLogin}
+              dispmain={() => dispmain}
+              // setSignup={setSignup}
             />
           }
         ></Route>
@@ -75,10 +116,9 @@ function App() {
           path="/signup"
           element={
             <Signup
-              setLogin={setLogin}
-              login={login}
-              signup={signup}
-              setSignup={setSignup}
+              // setLogin={setLogin}
+              dispmain={() => dispmain}
+              // setSignup={setSignup}
             />
           }
         ></Route>

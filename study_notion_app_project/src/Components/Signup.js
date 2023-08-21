@@ -1,16 +1,14 @@
 import React from "react";
 import SignupImg from "../assets/signup.png";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 
-const Signup = ({ setLogin, setSignup, signup, login }) => {
+const Signup = ({ setLogin, setSignup, dispmain }) => {
   let navi = useNavigate();
 
   let subform = (ev) => {
-    setLogin("logout");
-    setSignup("Dashboard");
+    // setLogin("logout");
+    // setSignup("Dashboard");
     navi("/dashboard");
-    toast("Logged in");
     ev.preventDefault();
   };
   return (
@@ -38,7 +36,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
                 <label htmlFor="">First Name</label>
                 <input
                   type="text"
-                  name=""
+                  name="fname"
                   className="bg-gray-400 rounded-sm"
                   placeholder="enter first name"
                 />
@@ -47,7 +45,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
                 <label htmlFor="">Last Name</label>
                 <input
                   type="text"
-                  name=""
+                  name="lname"
                   className="bg-gray-400 rounded-sm"
                   placeholder="enter last name"
                 />
@@ -57,7 +55,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
               <label htmlFor="">Email Address</label>
               <input
                 type="text"
-                name=""
+                name="signupmail"
                 className="bg-gray-400 rounded-sm"
                 placeholder="enter email address"
                 autoComplete="username"
@@ -68,7 +66,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
                 <label htmlFor="">Create password</label>
                 <input
                   type="password"
-                  name=""
+                  name="signupass"
                   className="bg-gray-400 rounded-sm"
                   placeholder="Enter password"
                   autoComplete="new-password"
@@ -78,7 +76,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
                 <label htmlFor="">Confirm password</label>
                 <input
                   type="password"
-                  name=""
+                  name="signupassconfirm"
                   className="bg-gray-400 rounded-sm"
                   placeholder="Confirm password"
                   autoComplete="new-password"
@@ -86,7 +84,7 @@ const Signup = ({ setLogin, setSignup, signup, login }) => {
               </div>
             </div>
             <div className=" bg-yellow-200 p-2 rounded-sm text-black text-center">
-              <button type="submit" className="">
+              <button type="submit" onClick={dispmain()}>
                 Create Account
               </button>
             </div>
