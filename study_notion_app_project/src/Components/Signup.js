@@ -1,16 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import SignupImg from "../assets/signup.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Signup = ({ setLogin, setSignup, dispmain }) => {
-  let navi = useNavigate();
+  // let navi = useNavigate();
+
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    signupmail: "",
+    signupass: "",
+  });
+
+  const [errors, setErrors] = useState({
+    fname: "",
+    lname: "",
+    signupmail: "",
+    signupass: "",
+  });
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {
+      fname: "",
+      lname: "",
+      signupmail: "",
+      signupass: "",
+      signupassconfirm: "",
+    };
+
+    if (!formData.fname) {
+      valid = false;
+      newErrors.fname = "First name is required";
+    }
+
+    if (!formData.lname) {
+      valid = false;
+      newErrors.lname = "Last name is required";
+    }
+
+    if (!formData.signupmail) {
+      valid = false;
+      newErrors.signupmail = "Signup email is required";
+    }
+
+    if (!formData.signupass) {
+      valid = false;
+      newErrors.signupass = "Password is required";
+    }
+
+    if (formData.signupassconfirm !== formData.signupass) {
+      valid = false;
+      newErrors.signupass = "Password does not match";
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
+  let setallthedata = (eve) => {
+    setFormData((prevdata) => {
+      return {
+        ...prevdata,
+        [eve.target.name]: eve.target.value,
+      };
+    });
+  };
 
   let subform = (ev) => {
     // setLogin("logout");
     // setSignup("Dashboard");
-    navi("/dashboard");
+    if (validateForm()) {
+      dispmain();
+    } else {
+      toast("please enter credentials");
+    }
     ev.preventDefault();
   };
+
   return (
     <>
       <div className="w-full  bg-black text-white h-[100vh] flex">
@@ -38,8 +106,11 @@ const Signup = ({ setLogin, setSignup, dispmain }) => {
                   type="text"
                   name="fname"
                   className="bg-gray-400 rounded-sm"
+                  onChange={setallthedata}
+                  value={formData.fname}
                   placeholder="enter first name"
                 />
+                <p className="text-red-500">{errors.fname}</p>
               </div>
               <div>
                 <label htmlFor="">Last Name</label>
@@ -47,19 +118,25 @@ const Signup = ({ setLogin, setSignup, dispmain }) => {
                   type="text"
                   name="lname"
                   className="bg-gray-400 rounded-sm"
+                  onChange={setallthedata}
+                  value={formData.lname}
                   placeholder="enter last name"
                 />
+                <p className="text-red-500">{errors.lname}</p>
               </div>
             </div>
             <div className="flex flex-col w-[92%]">
               <label htmlFor="">Email Address</label>
               <input
-                type="text"
+                type="email"
                 name="signupmail"
                 className="bg-gray-400 rounded-sm"
+                onChange={setallthedata}
+                value={formData.signupmail}
                 placeholder="enter email address"
                 autoComplete="username"
               />
+              <p className="text-red-500">{errors.signupmail}</p>
             </div>
             <div className="flex">
               <div>
@@ -68,9 +145,12 @@ const Signup = ({ setLogin, setSignup, dispmain }) => {
                   type="password"
                   name="signupass"
                   className="bg-gray-400 rounded-sm"
+                  onChange={setallthedata}
+                  value={formData.signupass}
                   placeholder="Enter password"
                   autoComplete="new-password"
                 />
+                <p className="text-red-500">{errors.signupass}</p>
               </div>
               <div>
                 <label htmlFor="">Confirm password</label>
@@ -78,15 +158,15 @@ const Signup = ({ setLogin, setSignup, dispmain }) => {
                   type="password"
                   name="signupassconfirm"
                   className="bg-gray-400 rounded-sm"
+                  onChange={setallthedata}
+                  value={formData.signupassconfirm}
                   placeholder="Confirm password"
                   autoComplete="new-password"
                 />
               </div>
             </div>
             <div className=" bg-yellow-200 p-2 rounded-sm text-black text-center">
-              <button type="submit" onClick={dispmain()}>
-                Create Account
-              </button>
+              <button type="submit">Create Account</button>
             </div>
             <div className="text-center  font-bold">Sign in With Google</div>
           </div>

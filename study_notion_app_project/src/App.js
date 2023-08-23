@@ -107,7 +107,7 @@ function App() {
           element={
             <Login
               // setLogin={setLogin}
-              dispmain={() => dispmain}
+              dispmain={dispmain}
               // setSignup={setSignup}
             />
           }
@@ -117,7 +117,7 @@ function App() {
           element={
             <Signup
               // setLogin={setLogin}
-              dispmain={() => dispmain}
+              dispmain={dispmain}
               // setSignup={setSignup}
             />
           }

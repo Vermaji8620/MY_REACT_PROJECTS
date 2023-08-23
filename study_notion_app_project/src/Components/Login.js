@@ -1,12 +1,38 @@
 import React, { useState } from "react";
 import loginImg from "../assets/login.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Login = ({ setLogin, setSignup, dispmain }) => {
   const [formdata, setFormdata] = useState({
     loginmail: "",
     loginpassword: "",
   });
+  const [errors, setErrors] = useState({
+    loginmail: "",
+    loginpassword: "",
+  });
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {
+      loginmail: "",
+      loginpassword: "",
+    };
+
+    if (!formdata.loginmail) {
+      valid = false;
+      newErrors.loginmail = "Email address is required";
+    }
+
+    if (!formdata.loginpassword) {
+      valid = false;
+      newErrors.loginpassword = "Password is required";
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
 
   let setting = (evee) => {
     setFormdata((prevformdata) => {
@@ -17,11 +43,15 @@ const Login = ({ setLogin, setSignup, dispmain }) => {
     });
   };
 
-  let navi = useNavigate();
+  // let navi = useNavigate();
   let subform = (ev) => {
     // setLogin("logout");
     // setSignup("Dashboard");
-    navi("/dashboard");
+    if (validateForm()) {
+      dispmain();
+    } else {
+      toast("please enter credentials");
+    }
     ev.preventDefault();
   };
 
@@ -49,9 +79,10 @@ const Login = ({ setLogin, setSignup, dispmain }) => {
                   id="mail"
                   className="text-black bg-gray-800 p-2"
                   placeholder="enter email address"
-                  required
                   autoComplete="username"
+                  required
                 />
+                <p className="text-red-500">{errors.loginmail}</p>
               </div>
               <div className="flex flex-col m-6">
                 <label htmlFor="pass">Password</label>
@@ -66,14 +97,11 @@ const Login = ({ setLogin, setSignup, dispmain }) => {
                   autoComplete="current-password"
                   required
                 />
+                <p className="text-red-500">{errors.loginmail}</p>
               </div>
               <div className="flex flex-col text-end">Forget Password</div>
               <div className="bg-yellow-300 text-black text-center font-bold w-[90%] m-auto">
-                <button
-                  type="submit"
-                  className="rounded-lg p-2"
-                  onClick={dispmain()}
-                >
+                <button type="submit" className="rounded-lg p-2">
                   Sign In
                 </button>
               </div>
