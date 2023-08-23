@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import SignupImg from "../assets/signup.png";
-// import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const Signup = ({ setLogin, setSignup, dispmain }) => {
-  // let navi = useNavigate();
-
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -69,8 +66,6 @@ const Signup = ({ setLogin, setSignup, dispmain }) => {
   };
 
   let subform = (ev) => {
-    // setLogin("logout");
-    // setSignup("Dashboard");
     if (validateForm()) {
       dispmain();
     } else {

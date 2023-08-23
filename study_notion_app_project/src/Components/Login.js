@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import loginImg from "../assets/login.png";
-// import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const Login = ({ setLogin, setSignup, dispmain }) => {
@@ -43,10 +42,7 @@ const Login = ({ setLogin, setSignup, dispmain }) => {
     });
   };
 
-  // let navi = useNavigate();
   let subform = (ev) => {
-    // setLogin("logout");
-    // setSignup("Dashboard");
     if (validateForm()) {
       dispmain();
     } else {

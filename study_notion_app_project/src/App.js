@@ -7,14 +7,10 @@ import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import DashBoard from "./Components/DashBoard";
-// import { useState } from "react";
 import LogoImg from "./assets/Logo.svg";
 import { toast } from "react-hot-toast";
 
 function App() {
-  //   const [login, setLogin] = useState("Login");
-  //   const [signup, setSignup] = useState("Signup");
-
   let navigaetee = useNavigate();
 
   let dispmain = () => {
@@ -102,26 +98,8 @@ function App() {
         <Route index element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route
-          path="/login"
-          element={
-            <Login
-              // setLogin={setLogin}
-              dispmain={dispmain}
-              // setSignup={setSignup}
-            />
-          }
-        ></Route>
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              // setLogin={setLogin}
-              dispmain={dispmain}
-              // setSignup={setSignup}
-            />
-          }
-        ></Route>
+        <Route path="/login" element={<Login dispmain={dispmain} />}></Route>
+        <Route path="/signup" element={<Signup dispmain={dispmain} />}></Route>
         <Route path="/dashboard" element={<DashBoard />}></Route>
         <Route path="*" element={<div>Page Not Found</div>}></Route>
       </Routes>
