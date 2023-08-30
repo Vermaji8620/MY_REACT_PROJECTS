@@ -8,7 +8,7 @@ const Home = () => {
     <div>
       <div className="relative">
         <Header />
-        <div className="App border w-1/2 m-auto">
+        <div className="App pt-4 w-1/2 m-auto">
           <Blogs />
           <Pagination />
         </div>

@@ -3,12 +3,11 @@ import { AppContext } from "../Context/AppContext";
 import Spinner from "./Spinner";
 import BlogDetails from "./BlogDetails";
 
-
 const Blogs = () => {
   const { posts, loading } = useContext(AppContext);
 
   return (
-    <div className="border overflow-auto mt-10 pt-36">
+    <div className="overflow-auto p-[3rem] m-[5rem] border">
       {loading ? (
         <div className="flex justify-center flex-col items-center h-screen">
           <Spinner />

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { baseUrl } from "../baseUrl";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,8 @@ export function AppContextProvider({ children }) {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalpages, setTotalpages] = useState(null);
+  const [color, setColor] = useState("white");
+  const [textcolor, settextColor] = useState("black");
   const navigate = useNavigate();
 
   //   data filling
@@ -44,6 +46,15 @@ export function AppContextProvider({ children }) {
     // fetchblogpost(page);
   }
 
+  let settingColor = () => {
+    const newColor = color === "black" ? "white" : "black";
+    const newtextColor = textcolor === "white" ? "black" : "white";
+    settextColor(newtextColor);
+    setColor(newColor);
+    document.body.style.background = newColor;
+    document.body.style.color = newtextColor;
+  };
+
   const value = {
     posts,
     loading,
@@ -55,6 +66,9 @@ export function AppContextProvider({ children }) {
     setTotalpages,
     fetchblogpost,
     handlePageChange,
+    color,
+    setColor,
+    settingColor,
   };
 
   // sending the data

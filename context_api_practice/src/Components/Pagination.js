@@ -4,7 +4,7 @@ import { AppContext } from "../Context/AppContext";
 const Pagination = () => {
   const { page, handlePageChange, totalpages } = useContext(AppContext);
   return (
-    <div className="flex border w-1/2 justify-between fixed bottom-0 bg-white">
+    <div className="flex border w-1/2 justify-between fixed bottom-0">
       <div className=" flex border">
         {page > 1 && (
           <button
@@ -23,7 +23,7 @@ const Pagination = () => {
           </button>
         )}
       </div>
-      <div className="border bg-white bottom-0 right-0">
+      <div className="border bottom-0 right-0">
         <p>
           page {page} of {totalpages}
         </p>

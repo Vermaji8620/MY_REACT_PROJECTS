@@ -11,13 +11,18 @@ import CategoryPage from "./Pages/CategoryPage";
 
 function App() {
   const { fetchblogpost } = useContext(AppContext);
+
   const [searchParams] = useSearchParams();
+
   const location = useLocation();
+
   useEffect(() => {
     const page = searchParams.get("page") ?? 1; // page variable k andar mein key 'page' ka value store kr derhe hai-------agar hai to thik hai nai to 1 store kr denge
+
     if (location.pathname.includes("tags")) {
       // iska matlab tag wala page show krna hai
       const tag = location.pathname.split("/").at(-1).replaceAll("-", " ");
+
       fetchblogpost(Number(page), tag);
     } else if (location.pathname.includes("categories")) {
       const category = location.pathname.split("/").at(-1).replaceAll("-", " ");
@@ -25,6 +30,10 @@ function App() {
     } else {
       fetchblogpost(Number(page));
     }
+
+    // setColor("black");
+    // settingColor();
+
     // eslint-disable-next-line
   }, [location.pathname, location.search]);
 

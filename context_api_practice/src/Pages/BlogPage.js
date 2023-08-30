@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+// eslint-disable-next-line
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
 // import { baseUrl } from "../baseUrl";
@@ -57,16 +58,16 @@ const BlogPage = () => {
         <div>
           <BlogDetails post={blog} />
           <h2>Related Blogs</h2>
-          console.log(relatedblogs)
-          {relatedblogs.length > 0
-            ? relatedblogs.map((post) => {
-                return (
-                  <div key={post.id}>
-                    <BlogDetails post={post} />
-                  </div>
-                );
-              })
-            : console.log("Nothing to fetch")}
+          {/* console.log(relatedblogs) */}
+          {relatedblogs && relatedblogs.length > 0 ? (
+            relatedblogs.map((post) => (
+              <div key={post.id}>
+                <BlogDetails post={post} />
+              </div>
+            ))
+          ) : (
+            <p>Nothing to fetch</p>
+          )}
         </div>
       ) : (
         <div>
