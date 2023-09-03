@@ -6,7 +6,7 @@ import Cart from "./pages/Cart";
 const App = () => {
   return (
     <div>
-      <div>
+      <div className="relative h-14">
         <Navbar />
       </div>
       <Routes>

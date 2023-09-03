@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import Product from "../components/Product";
+import { products } from "../data";
 
 const Home = () => {
   const API_URL = "https://fakestoreapi.com/products";
@@ -14,8 +15,7 @@ const Home = () => {
       const data = await res.json();
       setPosts(data);
     } catch (error) {
-      console.log(error);
-      setPosts([]);
+      setPosts(products);
     }
     setLoading(false);
   };
@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" h-screen w-[80%] m-auto flex flex-wrap">
       {loading ? (
         <Spinner />
       ) : posts.length > 0 ? (
