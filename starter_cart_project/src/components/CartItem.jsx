@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="w-[23%] p-6 border cursor-pointer flex gap-5 flex-col m-2 items-center">
       <div>
         <div>
           <img src={item.image} alt="" />

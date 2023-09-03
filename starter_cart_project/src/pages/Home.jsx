@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" h-screen w-[80%] m-auto flex flex-wrap">
+    <div className="h-screen w-[80%] m-auto flex flex-wrap">
       {loading ? (
         <Spinner />
       ) : posts.length > 0 ? (

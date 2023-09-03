@@ -12,10 +12,10 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <div>
+    <div className="h-screen w-[80%] m-auto">
       {cart.length > 0 ? (
-        <div>
-          <div>
+        <div className="flex">
+          <div className="flex flex-wrap w-full">
             {cart.map((item, index) => (
               <CartItem item={item} key={index} />
             ))}

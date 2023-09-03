@@ -18,7 +18,7 @@ const Product = ({ post }) => {
   };
 
   return (
-    <div className="w-[23%] p-6 border flex gap-5 flex-col m-2 items-center">
+    <div className="w-[23%] p-6 border cursor-pointer flex gap-5 flex-col m-2 items-center">
       <div>
         <p className="font-bold">{post.title.substring(0, 20)}</p>
       </div>
